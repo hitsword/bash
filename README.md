@@ -8,3 +8,11 @@ chmod +x install-frps.sh
 
 Uninstall FRP Server
 ./install-frps.sh uninstall
+
+Install FRP Client
+wget --no-check-certificate https://raw.githubusercontent.com/hitsword/bash/master/frp/frpc/install-frpc.sh
+chmod +x install-frpc.sh
+./install-frpc.sh install
+
+Uninstall FRP Client
+./install-frpc.sh uninstall
