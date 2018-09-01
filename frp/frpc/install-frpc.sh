@@ -7,7 +7,7 @@ export PATH
 #   Author: HuayiSoftware
 #===============================================================================================
 program_name="frpc"
-version="1.0.0"
+version="1.1.0"
 str_program_dir="/usr/local/${program_name}"
 program_init="/etc/init.d/${program_name}"
 program_config_file="frpc.ini"
@@ -511,6 +511,10 @@ EOF
     echo " done"
     [ -s ${program_init} ] && ln -s ${program_init} /usr/bin/${program_name}
     ${program_init} start
+    if [ -e  "/usr/local/directadmin/data/admin/services.status" ]; then
+      sed -i '/frpc/d' /usr/local/directadmin/data/admin/services.status
+      echo "frpc=ON" >> /usr/local/directadmin/data/admin/services.status
+    fi
     fun_huayi
     #install successfully
     echo ""
@@ -578,6 +582,9 @@ uninstall_program_server_huayi(){
             fi
             rm -f ${program_init} /var/run/${program_name}.pid /usr/bin/${program_name}
             rm -fr ${str_program_dir}
+            if [ -e  "/usr/local/directadmin/data/admin/services.status" ]; then
+              sed -i '/frpc/d' /usr/local/directadmin/data/admin/services.status
+            fi
             echo "${program_name} uninstall success!"
         fi
     else
