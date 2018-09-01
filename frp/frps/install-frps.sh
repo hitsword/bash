@@ -7,7 +7,7 @@ export PATH
 #   Author: 
 #===============================================================================================
 program_name="frps"
-version="1.0.2"
+version="1.0.3"
 str_program_dir="/usr/local/${program_name}"
 program_init="/etc/init.d/${program_name}"
 program_config_file="frps.ini"
