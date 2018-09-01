@@ -7,7 +7,7 @@ export PATH
 #   Author: HuayiSoftware
 #===============================================================================================
 program_name="frpc"
-version="1.1.0"
+version="1.1.1"
 str_program_dir="/usr/local/${program_name}"
 program_init="/etc/init.d/${program_name}"
 program_config_file="frpc.ini"
