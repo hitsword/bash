@@ -25,7 +25,7 @@ NAME=frpc
 BIN=${ProgramPath}/${NAME}
 CONFIGFILE=${ProgramPath}/frpc.ini
 SCRIPTNAME=/etc/init.d/${NAME}
-version="1.1"
+version="1.2"
 program_version=`${BIN} --version`
 RET_VAL=0
 
@@ -98,10 +98,14 @@ fun_restart(){
     fun_stop
     fun_start
 }
+fun_reload(){
+    ${BIN} reload -c ${CONFIGFILE}
+}
 fun_status(){
     PID=`ps -ef | grep -v grep | grep -i "${BIN}" | awk '{print $2}'`
     if [ ! -z $PID ]; then
         echo "${ProgramName} (pid $PID) is running..."
+        ${BIN} status -c ${CONFIGFILE}
     else
         echo "${ProgramName} is stopped"
         exit 0
@@ -141,7 +145,7 @@ fun_help(){
 arg1=$1
 [  -z ${arg1} ]
 case "${arg1}" in
-    start|stop|restart|status|config)
+    start|stop|restart|reload|status|config)
         fun_${arg1}
     ;;
     [vV][eE][rR][sS][iI][oO][nN]|-[vV][eE][rR][sS][iI][oO][nN]|--[vV][eE][rR][sS][iI][oO][nN]|-[vV]|--[vV])
@@ -155,7 +159,7 @@ case "${arg1}" in
     ;;
     *)
         fun_huayi
-        echo "Usage: $SCRIPTNAME {start|stop|restart|status|config|version}"
+        echo "Usage: $SCRIPTNAME {start|stop|restart|reload|status|config|version}"
         RET_VAL=1
     ;;
 esac
