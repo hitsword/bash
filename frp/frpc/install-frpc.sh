@@ -7,7 +7,7 @@ export PATH
 #   Author: HuayiSoftware
 #===============================================================================================
 program_name="frpc"
-version="1.1.1"
+version="1.1.2"
 str_program_dir="/usr/local/${program_name}"
 program_init="/etc/init.d/${program_name}"
 program_config_file="frpc.ini"
@@ -153,6 +153,14 @@ pre_install_packs(){
             apt-get -y update && apt-get -y install wget psmisc net-tools
         fi
     fi
+}
+# Random password
+fun_randstr(){
+    strNum=$1
+    [ -z "${strNum}" ] && strNum="16"
+    strRandomPass=""
+    strRandomPass=`tr -cd '[:alnum:]' < /dev/urandom | fold -w ${strNum} | head -n1`
+    echo ${strRandomPass}
 }
 fun_get_version(){
     rm -f ${ver_file}
