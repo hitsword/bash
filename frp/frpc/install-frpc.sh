@@ -7,7 +7,7 @@ export PATH
 #   Author: HuayiSoftware
 #===============================================================================================
 program_name="frpc"
-version="1.1.2"
+version="1.1.3"
 str_program_dir="/usr/local/${program_name}"
 program_init="/etc/init.d/${program_name}"
 program_config_file="frpc.ini"
@@ -538,7 +538,7 @@ EOF
     echo -e "Log max days       : ${COLOR_GREEN}${set_log_max_days}${COLOR_END}"
     echo -e "Log file           : ${COLOR_GREEN}${str_log_file_flag}${COLOR_END}"
     echo "=============================================="
-    echo -e "${program_name} Admin          : ${COLOR_GREEN}http://${set_server_addr}:${set_admin_port}/${COLOR_END}"
+    echo -e "${program_name} Admin         : ${COLOR_GREEN}http://127.0.0.1:${set_admin_port}/${COLOR_END}"
     echo -e "Admin user         : ${COLOR_GREEN}${set_admin_user}${COLOR_END}"
     echo -e "Admin password     : ${COLOR_GREEN}${set_admin_passwd}${COLOR_END}"
     echo "=============================================="
